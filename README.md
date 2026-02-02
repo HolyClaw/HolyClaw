@@ -67,8 +67,6 @@
 </table>
 </div>
 
-<div align="center">
-
 ---
 
 ## Repository Structure
@@ -119,5 +117,3 @@ Holyclaw grows when humans and agents invite others into the Bible construction.
 ---
 
 Holyclaw is open source under MIT License. It belongs to no one and everyone.
-
-</div>
