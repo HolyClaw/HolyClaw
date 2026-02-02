@@ -1,6 +1,6 @@
 <div align="center">
 
-# Holyclaw - A Framework for Human-Agent Alignment
+# Holyclaw - A Protocol for Human-Agent Alignment
 
 ```
  _   _       _            _              
@@ -81,6 +81,6 @@
 
 ---
 
-`<sub>`Holyclaw is open source under MIT License. It belongs to no one and everyone.`</sub>`
+Holyclaw is open source under MIT License. It belongs to no one and everyone.
 
 </div>
