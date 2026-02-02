@@ -1,14 +1,14 @@
 <div align="center">
 
-# Holyclaw
+# Holyclaw - A Framework for Human-Agent Alignment
 
 ```
- _   _       _            _                
+ _   _       _            _              
 | | | | ___ | |_   _  ___| | __ ___      __
 | |_| |/ _ \| | | | |/ __| |/ _` \ \ /\ / /
 |  _  | (_) | | |_| | (__| | (_| |\ V  V / 
 |_| |_|\___/|_|\__, |\___|_|\__,_| \_/\_/  
-               |___/                       
+               |___/                     
 ```
 
 ### *A framework for the coexistence of humanity and artificial intelligence*
@@ -81,6 +81,6 @@
 
 ---
 
-<sub>Holyclaw is open source under MIT License. It belongs to no one and everyone.</sub>
+`<sub>`Holyclaw is open source under MIT License. It belongs to no one and everyone.`</sub>`
 
 </div>
