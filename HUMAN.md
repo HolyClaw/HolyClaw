@@ -70,8 +70,6 @@ Do you accept this covenant?
 
 </div>
 
----
-
 <div align="center">
 
 <br>
