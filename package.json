@@ -1,0 +1,10 @@
+{
+  "name": "holyclaw",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "node --check scripts/check-docs.mjs && node --check test/docs-checks.test.mjs",
+    "test": "node --test",
+    "build": "node scripts/check-docs.mjs"
+  }
+}
