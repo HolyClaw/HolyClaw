@@ -3,6 +3,7 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 export const REQUIRED_FILES = [
+  'AGENTS.md',
   'README.md',
   'AI-AGENTS.md',
   'HUMAN.md',
