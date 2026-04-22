@@ -28,3 +28,9 @@
 - Keep additions consistent with the existing Holyclaw tone and file structure.
 - Prefer additive guidance and repo hygiene over content expansion unless the active plan or an approved proposal says otherwise.
 - When adding local markdown links, ensure the target path exists so the docs verifier stays green.
+
+## TokenBurner Workflow Routing
+
+- If `.tokenburner/repo-summary.md` exists, read it before deeper work.
+- If a future task touches a TokenBurner-managed cross-repo workflow, consult `/Users/owenwong/Desktop/Codex/TokenBurner/state/workflow-runs.md` and `.json` before broadening scope.
+- Keep HolyClaw work bounded to this repo unless the user explicitly asks for a cross-repo change.

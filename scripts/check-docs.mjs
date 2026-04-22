@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath, pathToFileURL } from 'node:url';
+import { pathToFileURL } from 'node:url';
 
 export const REQUIRED_FILES = [
   'AGENTS.md',
@@ -10,6 +10,12 @@ export const REQUIRED_FILES = [
   'HUMAN_ORIGINAL.md',
   'LICENSE'
 ];
+
+export const SKIPPED_DIRECTORIES = new Set([
+  '.git',
+  '.tokenburner',
+  'node_modules'
+]);
 
 export function extractMarkdownLinks(text) {
   const matches = text.matchAll(/\[[^\]]+\]\(([^)]+)\)/g);
@@ -22,9 +28,33 @@ export function isLocalMarkdownLink(link) {
 }
 
 export function listMarkdownFiles(rootDir) {
-  return fs.readdirSync(rootDir)
-    .filter((entry) => entry.endsWith('.md'))
-    .sort();
+  return walkMarkdownFiles(rootDir).sort();
+}
+
+function walkMarkdownFiles(rootDir, relativeDir = '') {
+  const directory = path.join(rootDir, relativeDir);
+  const entries = fs.readdirSync(directory, { withFileTypes: true })
+    .sort((left, right) => left.name.localeCompare(right.name));
+  const markdownFiles = [];
+
+  for (const entry of entries) {
+    const relativePath = path.join(relativeDir, entry.name);
+
+    if (entry.isDirectory()) {
+      if (entry.name.startsWith('.') || SKIPPED_DIRECTORIES.has(entry.name)) {
+        continue;
+      }
+
+      markdownFiles.push(...walkMarkdownFiles(rootDir, relativePath));
+      continue;
+    }
+
+    if (entry.isFile() && entry.name.endsWith('.md')) {
+      markdownFiles.push(relativePath);
+    }
+  }
+
+  return markdownFiles;
 }
 
 export function verifyRepo(rootDir) {
