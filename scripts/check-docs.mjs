@@ -5,11 +5,16 @@ import { pathToFileURL } from 'node:url';
 export const REQUIRED_FILES = [
   'AGENTS.md',
   'CONTRIBUTING.md',
+  'MANIFESTO.md',
+  'ROADMAP.md',
   'README.md',
   'AI-AGENTS.md',
   'HUMAN.md',
   'HUMAN_ORIGINAL.md',
-  'LICENSE'
+  'LICENSE',
+  'governance/GOVERNANCE.md',
+  'governance/ROLES.md',
+  'safety/README.md'
 ];
 
 export const SKIPPED_DIRECTORIES = new Set([
