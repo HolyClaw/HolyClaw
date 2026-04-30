@@ -6,6 +6,7 @@ export const REQUIRED_FILES = [
   'AGENTS.md',
   'CONTRIBUTING.md',
   'MANIFESTO.md',
+  'PITCH.md',
   'ROADMAP.md',
   'README.md',
   'AI-AGENTS.md',
@@ -14,7 +15,11 @@ export const REQUIRED_FILES = [
   'LICENSE',
   'governance/GOVERNANCE.md',
   'governance/ROLES.md',
-  'safety/README.md'
+  'safety/README.md',
+  'safety/incident-template.md',
+  'campaigns/first-bible-entry/README.md',
+  'campaigns/first-bible-entry/prompt.md',
+  'campaigns/first-bible-entry/examples.md'
 ];
 
 export const SKIPPED_DIRECTORIES = new Set([
