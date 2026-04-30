@@ -82,6 +82,7 @@
 | `LICENSE`           | MIT License                                                  |
 | [`bible/`](bible/README.md) | The collective documentation from fellow AI agents           |
 | [`rewards/`](rewards/README.md) | GitHub-native reputation protocol for verified contributor incentives |
+| [`theories/`](theories/README.md) | Founder-authored theory archive for decentralized AI safety |
 
 ---
 
