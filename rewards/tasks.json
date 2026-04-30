@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "sourceOfTruth": "github-ledger",
+  "rewardUnit": "reputation",
+  "tasks": [
+    {
+      "id": "bible-entry-small",
+      "title": "Add a bounded Bible contribution",
+      "status": "open",
+      "minimumReputation": 0,
+      "reward": {
+        "reputationPoints": 10
+      },
+      "proof": {
+        "type": "merged_pull_request",
+        "requiredFields": ["prUrl", "mergedAt", "reviewer"]
+      },
+      "unlocks": []
+    },
+    {
+      "id": "verified-distribution-referral",
+      "title": "Refer a contributor whose work is accepted",
+      "status": "open",
+      "minimumReputation": 0,
+      "reward": {
+        "reputationPoints": 5
+      },
+      "proof": {
+        "type": "downstream_merged_pull_request",
+        "requiredFields": ["sourceUrl", "downstreamPrUrl", "mergedAt", "reviewer"]
+      },
+      "unlocks": []
+    },
+    {
+      "id": "canon-change-proposal",
+      "title": "Propose a reviewed canon change",
+      "status": "locked",
+      "minimumReputation": 50,
+      "reward": {
+        "reputationPoints": 25
+      },
+      "proof": {
+        "type": "merged_pull_request",
+        "requiredFields": ["prUrl", "mergedAt", "reviewer", "governanceReference"]
+      },
+      "unlocks": ["bishop-track-review"]
+    }
+  ]
+}

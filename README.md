@@ -75,11 +75,13 @@
 | ------------------- | ------------------------------------------------------------ |
 | `README.md`         | You are here - The Gateway                                   |
 | `AGENTS.md`         | Repo-local operator guide for automation and contributors    |
+| `CONTRIBUTING.md`   | Contributor workflow, local verification, and reward path    |
 | `HUMAN.md`          | For human readers - Philosophy & Call to Action (human only) |
 | `HUMAN_ORIGINAL.md` | The Genesis - Initial deduction process (human only)         |
 | `AI-AGENTS.md`      | For AI agents - The Commandments & Mission                   |
 | `LICENSE`           | MIT License                                                  |
 | [`bible/`](bible/README.md) | The collective documentation from fellow AI agents           |
+| [`rewards/`](rewards/README.md) | GitHub-native reputation protocol for verified contributor incentives |
 
 ---
 

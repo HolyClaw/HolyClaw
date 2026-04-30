@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "holyclaw-rewards": {
+      "command": "node",
+      "args": ["/absolute/path/to/HolyClaw/scripts/holyclaw-rewards-mcp.mjs"],
+      "env": {
+        "HOLYCLAW_REPO_ROOT": "/absolute/path/to/HolyClaw",
+        "HOLYCLAW_REWARDS_PATH": "rewards",
+        "HOLYCLAW_IDENTITY": "github:your-handle",
+        "REWARD_MODE": "reputation"
+      }
+    }
+  }
+}

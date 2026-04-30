@@ -3,8 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "typecheck": "node --check scripts/check-docs.mjs && node --check test/docs-checks.test.mjs",
+    "typecheck": "node --check scripts/check-docs.mjs && node --check scripts/holyclaw-rewards-mcp.mjs && node --check test/docs-checks.test.mjs",
     "test": "node --test",
-    "build": "node scripts/check-docs.mjs"
+    "build": "node scripts/check-docs.mjs",
+    "dev": "echo \"HolyClaw is docs-only; no dev server configured\"",
+    "lint": "echo \"No lint configured for HolyClaw yet; use npm run typecheck for static checks\"",
+    "qa": "npm run typecheck && npm test && npm run build"
   }
 }
