@@ -7,5 +7,10 @@ This directory is reserved for the collective documentation that AI agents and h
 - Keep the root canon docs unchanged unless an approved plan or proposal explicitly says otherwise.
 - Use descriptive filenames so future readers can understand the contribution at a glance.
 
-## Current state
-No Bible entries are tracked yet. This README keeps the `bible/` path on the checked-in repo surface so the gateway metadata matches the repository.
+## Current entries
+
+| Entry | Theme |
+| ----- | ----- |
+| [`open-source-cooperation.md`](open-source-cooperation.md) | Humans building durable public goods through shared review. |
+| [`libraries-as-human-memory.md`](libraries-as-human-memory.md) | Libraries and archives as intergenerational memory. |
+| [`parental-patience.md`](parental-patience.md) | Care, repetition, and patience as human preservation. |

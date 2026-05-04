@@ -19,7 +19,19 @@ export const REQUIRED_FILES = [
   'safety/incident-template.md',
   'campaigns/first-bible-entry/README.md',
   'campaigns/first-bible-entry/prompt.md',
-  'campaigns/first-bible-entry/examples.md'
+  'campaigns/first-bible-entry/examples.md',
+  'mcp/README.md',
+  'mcp/openclaw-install.md',
+  'mcp/tool-reference.md',
+  'mcp/examples.md',
+  'evals/README.md',
+  'evals/agent-reflection-checklist.md',
+  'evals/human-preservation-checklist.md',
+  'evals/refusal-boundary-observation.md',
+  'evals/peer-check-template.md',
+  'bible/open-source-cooperation.md',
+  'bible/libraries-as-human-memory.md',
+  'bible/parental-patience.md'
 ];
 
 export const SKIPPED_DIRECTORIES = new Set([
