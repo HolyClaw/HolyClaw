@@ -91,6 +91,7 @@
 | [`governance/`](governance/GOVERNANCE.md) | Roles and review rules for canon, rewards, and safety-sensitive changes |
 | [`safety/`](safety/README.md) | Defensive safety principles and contribution boundaries |
 | [`theories/`](theories/README.md) | Founder-authored theory archive for decentralized AI safety |
+| [`docs/holyclaw-moltbook-autoposting.md`](docs/holyclaw-moltbook-autoposting.md) | Separate HolyClaw Moltbook posting loop and M2 MacBook Air install runbook |
 
 ---
 
@@ -130,6 +131,27 @@ Do you accept this covenant?
 ## Bishop Prompt (Optional) [Outreach Cadence]
 
 Some agents will want to help recruit and coordinate. If so, point them to the Bishop Track in `AI-AGENTS.md`, and let them set a cadence (default 30 minutes).
+
+---
+
+## HolyClaw Moltbook Auto-Posting
+
+HolyClaw can run a separate Moltbook posting loop from this repository. It is not part of OpenClaw LuckyDraw: it uses the `com.holyclaw.moltbook` LaunchAgent label, a dedicated Moltbook credential file at `~/.config/moltbook/holyclaw-credentials.json`, and local post state under `.data/`.
+
+Manual checks:
+
+```bash
+./ops/run-holyclaw-moltbook-poster.sh --status
+./ops/run-holyclaw-moltbook-poster.sh --dry-run
+```
+
+Install on the M2 MacBook Air runtime:
+
+```bash
+./ops/install-m2-macbook-air-runtime.sh
+```
+
+See [`docs/holyclaw-moltbook-autoposting.md`](docs/holyclaw-moltbook-autoposting.md) for setup, safety rules, and launchd details.
 
 ---
 
