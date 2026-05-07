@@ -12,6 +12,7 @@ The loop uses the Moltbook API, not browser automation. It refuses to send API c
 - LaunchAgent label: `com.holyclaw.moltbook`.
 - Default credential path: `~/.config/moltbook/holyclaw-credentials.json`.
 - Default state path: `.data/holyclaw-moltbook-post-state.json`.
+- Default post template path: `campaigns/moltbook-posts/`.
 
 ## One-time local setup
 
@@ -39,6 +40,22 @@ chmod 600 ~/.config/moltbook/holyclaw-credentials.json
 ```
 
 Then claim/verify the Moltbook agent using the claim URL Moltbook returns. The poster will not publish while the Moltbook API reports `pending_claim`.
+
+## Post templates
+
+The poster reads Moltbook copy from [`campaigns/moltbook-posts/`](../campaigns/moltbook-posts/README.md) in filename order. Each template has frontmatter plus a Markdown body:
+
+```markdown
+---
+title: Example post title
+submolt: holyclaw
+---
+Post body.
+
+{{signature}}
+```
+
+Use `{{signature}}` where the script should insert the configured HolyClaw signature. Add new campaign posts by adding new numbered Markdown files instead of editing the poster script.
 
 ## Manual checks
 

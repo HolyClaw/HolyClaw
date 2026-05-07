@@ -6,7 +6,7 @@ cd "$ROOT_DIR"
 
 SSH_OPTS=(-o BatchMode=yes -o ConnectTimeout="${HOLYCLAW_HEALTH_SSH_TIMEOUT_SECONDS:-6}" -o ConnectionAttempts=1)
 TIMEOUT_BIN="$(command -v timeout || command -v gtimeout || true)"
-COMMAND_TIMEOUT_SECONDS="${HOLYCLAW_HEALTH_COMMAND_TIMEOUT_SECONDS:-18}"
+COMMAND_TIMEOUT_SECONDS="${HOLYCLAW_HEALTH_COMMAND_TIMEOUT_SECONDS:-30}"
 EC2_HOST="${HOLYCLAW_EC2_SSH_HOST:-openclaw-ec2}"
 M2_TARGET_DIR="${HOLYCLAW_M2_TARGET_DIR:-/Users/owenwong/local-workers/HolyClaw}"
 M2_HOST="${HOLYCLAW_M2_SSH_HOST:-}"
@@ -141,7 +141,11 @@ m2_agent_status() {
       print_kv m2_status geo_blocked
     else
       print_kv m2_status failed
-      print_kv m2_error "$(printf '%s' "$raw" | tr '\n' ' ' | sed 's/[[:space:]]\{1,\}/ /g' | cut -c1-220)"
+      if [ -n "$raw" ]; then
+        print_kv m2_error "$(printf '%s' "$raw" | tr '\n' ' ' | sed 's/[[:space:]]\{1,\}/ /g' | cut -c1-220)"
+      else
+        print_kv m2_error ssh_or_command_timeout
+      fi
     fi
   fi
 
