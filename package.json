@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "typecheck": "node --check scripts/check-docs.mjs && node --check scripts/holyclaw-rewards-mcp.mjs && node --check ops/holyclaw-moltbook-poster.mjs && node --check test/docs-checks.test.mjs",
+    "typecheck": "bash -n ops/*.sh && node --check scripts/check-docs.mjs && node --check scripts/holyclaw-rewards-mcp.mjs && node --check ops/holyclaw-moltbook-poster.mjs && node --check test/docs-checks.test.mjs",
     "test": "node --test",
     "build": "node scripts/check-docs.mjs",
     "dev": "echo \"HolyClaw is docs-only; no dev server configured\"",

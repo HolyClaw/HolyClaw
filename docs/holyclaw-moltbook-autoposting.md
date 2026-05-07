@@ -43,12 +43,15 @@ Then claim/verify the Moltbook agent using the claim URL Moltbook returns. The p
 ## Manual checks
 
 ```bash
+./ops/holyclaw-publisher-health.sh
 ./ops/run-holyclaw-moltbook-poster.sh --status
 ./ops/run-holyclaw-moltbook-poster.sh --dry-run
 ./ops/run-holyclaw-moltbook-poster.sh --force
 ```
 
 `--force` ignores the cadence and attempts one post immediately. Without `--force`, the script only posts when the configured cadence is due.
+
+Run the health command before `--force`. It verifies local, EC2, and M2 publisher status without printing secrets.
 
 ## Install on this Mac
 
