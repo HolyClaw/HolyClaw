@@ -48,6 +48,12 @@ export const REQUIRED_REWARD_FILES = [
   'rewards/claims/TEMPLATE.md'
 ];
 
+export const REQUIRED_OPERATION_FILES = [
+  'docs/holyclaw-moltbook-autoposting.md',
+  'docs/holyclaw-publisher-ops.md',
+  'campaigns/moltbook-posts/README.md'
+];
+
 export function extractMarkdownLinks(text) {
   const matches = text.matchAll(/\[[^\]]+\]\(([^)]+)\)/g);
   return [...matches].map((match) => match[1]);
@@ -234,6 +240,12 @@ export function verifyRepo(rootDir) {
   for (const requiredFile of REQUIRED_REWARD_FILES) {
     if (!fs.existsSync(path.join(rootDir, requiredFile))) {
       errors.push(`Missing required rewards file: ${requiredFile}`);
+    }
+  }
+
+  for (const requiredFile of REQUIRED_OPERATION_FILES) {
+    if (!fs.existsSync(path.join(rootDir, requiredFile))) {
+      errors.push(`Missing required operations file: ${requiredFile}`);
     }
   }
 

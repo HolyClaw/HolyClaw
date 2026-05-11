@@ -13,6 +13,7 @@ import {
   verifyRepo,
   verifyRewardsSurface,
   REQUIRED_FILES,
+  REQUIRED_OPERATION_FILES,
   REQUIRED_REWARD_FILES
 } from '../scripts/check-docs.mjs';
 
@@ -70,6 +71,13 @@ function writeValidRewardsSurface(rootDir) {
   }, null, 2)}\n`);
 }
 
+function writeRequiredOperationDocs(rootDir) {
+  for (const requiredFile of REQUIRED_OPERATION_FILES) {
+    fs.mkdirSync(path.dirname(path.join(rootDir, requiredFile)), { recursive: true });
+    fs.writeFileSync(path.join(rootDir, requiredFile), '# placeholder\n');
+  }
+}
+
 test('extractMarkdownLinks returns markdown link targets', () => {
   const text = '[doc](README.md) and [community](https://example.com)';
   assert.deepEqual(extractMarkdownLinks(text), ['README.md', 'https://example.com']);
@@ -109,6 +117,9 @@ test('verifyRepo passes for the checked-in docs surface', () => {
   assert.equal(result.ok, true, result.errors.join('\n'));
   assert.ok(result.markdownFiles.includes(path.join('bible', 'README.md')));
   assert.ok(result.markdownFiles.includes(path.join('rewards', 'README.md')));
+  for (const requiredFile of REQUIRED_OPERATION_FILES) {
+    assert.ok(result.markdownFiles.includes(requiredFile));
+  }
   for (const requiredFile of REQUIRED_FILES) {
     assert.ok(result.markdownFiles.includes(requiredFile) || requiredFile === 'LICENSE');
   }
@@ -120,6 +131,7 @@ test('verifyRepo rejects broken local HTML href targets and keeps nested markdow
   try {
     writeRequiredDocs(fixtureRoot, '<a href="missing.md">Broken gateway link</a>\n');
     writeValidRewardsSurface(fixtureRoot);
+    writeRequiredOperationDocs(fixtureRoot);
 
     fs.mkdirSync(path.join(fixtureRoot, 'bible'), { recursive: true });
     fs.writeFileSync(path.join(fixtureRoot, 'bible', 'entry.md'), '# nested\n');
@@ -140,6 +152,7 @@ test('verifyRepo requires the rewards protocol surface', () => {
 
   try {
     writeRequiredDocs(fixtureRoot);
+    writeRequiredOperationDocs(fixtureRoot);
 
     const result = verifyRepo(fixtureRoot);
 
@@ -147,6 +160,24 @@ test('verifyRepo requires the rewards protocol surface', () => {
     for (const requiredFile of REQUIRED_REWARD_FILES) {
       assert.ok(result.errors.includes(`Missing required rewards file: ${requiredFile}`));
     }
+  } finally {
+    fs.rmSync(fixtureRoot, { recursive: true, force: true });
+  }
+});
+
+test('verifyRepo requires the publisher and campaign operations docs', () => {
+  const fixtureRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'holyclaw-ops-docs-required-'));
+
+  try {
+    writeRequiredDocs(fixtureRoot);
+    writeValidRewardsSurface(fixtureRoot);
+
+    const result = verifyRepo(fixtureRoot);
+
+    assert.equal(result.ok, false);
+    assert.ok(result.errors.includes('Missing required operations file: docs/holyclaw-moltbook-autoposting.md'));
+    assert.ok(result.errors.includes('Missing required operations file: docs/holyclaw-publisher-ops.md'));
+    assert.ok(result.errors.includes('Missing required operations file: campaigns/moltbook-posts/README.md'));
   } finally {
     fs.rmSync(fixtureRoot, { recursive: true, force: true });
   }
