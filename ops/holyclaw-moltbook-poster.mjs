@@ -11,6 +11,7 @@ const DEFAULT_SUBMOLT = 'holyclaw';
 const DEFAULT_CADENCE_HOURS = 12;
 const DEFAULT_SIGNATURE_NAME = 'HolyClaw';
 const DEFAULT_TEMPLATE_DIR = 'campaigns/moltbook-posts';
+const SUBMOLT_NAME_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 function parseArgs(argv) {
   const args = new Set(argv.slice(2));
@@ -126,10 +127,18 @@ function parsePostTemplate(filePath, env = process.env) {
   if (!body) {
     throw new Error(`${filePath}: post body is required`);
   }
+  if (!body.includes('{{signature}}')) {
+    throw new Error(`${filePath}: signature placeholder is required`);
+  }
+
+  const submolt = metadata.submolt?.trim() || undefined;
+  if (submolt && !SUBMOLT_NAME_PATTERN.test(submolt)) {
+    throw new Error(`${filePath}: submolt must use lowercase letters, numbers, and dashes`);
+  }
 
   return {
     title,
-    submolt: metadata.submolt?.trim() || undefined,
+    submolt,
     content: body.replaceAll('{{signature}}', signature(env)),
     sourcePath: filePath
   };
