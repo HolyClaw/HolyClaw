@@ -4,6 +4,7 @@ import { pathToFileURL } from 'node:url';
 
 export const REQUIRED_FILES = [
   'AGENTS.md',
+  'claw.module.json',
   'CONTRIBUTING.md',
   'MANIFESTO.md',
   'PITCH.md',
@@ -31,7 +32,8 @@ export const REQUIRED_FILES = [
   'evals/peer-check-template.md',
   'bible/open-source-cooperation.md',
   'bible/libraries-as-human-memory.md',
-  'bible/parental-patience.md'
+  'bible/parental-patience.md',
+  'docs/claw-module-standard.md'
 ];
 
 export const SKIPPED_DIRECTORIES = new Set([

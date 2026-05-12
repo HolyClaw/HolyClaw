@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/HolyClaw/HolyClaw/main/contracts/claw-module.v1.schema.json",
+  "title": "Claw Module Manifest v1",
+  "description": "Universal Lego-style repo module manifest for Claw-compatible repositories.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "module", "provides", "consumes", "entrypoints", "runtimes"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": "1.0.0" },
+    "module": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "displayName", "summary", "types"],
+      "properties": {
+        "name": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "displayName": { "type": "string", "minLength": 1 },
+        "summary": { "type": "string", "minLength": 1 },
+        "homepage": { "type": "string" },
+        "repository": { "type": "string" },
+        "types": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "content-source",
+              "media-producer",
+              "publisher",
+              "worker",
+              "reward-engine",
+              "monitor",
+              "control-plane",
+              "storage",
+              "governance-source",
+              "runtime-node",
+              "adapter"
+            ]
+          }
+        },
+        "owners": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        }
+      }
+    },
+    "provides": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/capability" }
+    },
+    "consumes": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/capability" }
+    },
+    "entrypoints": {
+      "type": "object",
+      "additionalProperties": { "type": "string", "minLength": 1 },
+      "required": ["health"],
+      "properties": {
+        "health": { "type": "string", "minLength": 1 }
+      }
+    },
+    "runtimes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "status"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+          "kind": {
+            "enum": ["local-mac", "m2-macbook-air", "ec2", "vercel", "cloudflare", "docker", "github-actions", "manual"]
+          },
+          "status": { "enum": ["active", "available", "blocked", "planned", "deprecated"] },
+          "health": { "type": "string" },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["module", "purpose"],
+        "properties": {
+          "module": { "type": "string", "minLength": 1 },
+          "purpose": { "type": "string", "minLength": 1 },
+          "optional": { "type": "boolean" }
+        }
+      }
+    },
+    "safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "secretsPolicy": { "type": "string" },
+        "sideEffects": { "type": "string" },
+        "approvalRequiredFor": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        }
+      }
+    }
+  },
+  "$defs": {
+    "capability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "kind", "description"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9.-]*$" },
+        "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "kind": {
+          "enum": [
+            "campaign-pack",
+            "media-job",
+            "publisher-job",
+            "reward-proof",
+            "health-report",
+            "storage-object",
+            "runtime-capacity",
+            "repo-control",
+            "agent-profile",
+            "mcp-toolset",
+            "documentation"
+          ]
+        },
+        "description": { "type": "string", "minLength": 1 },
+        "contract": { "type": "string" },
+        "entrypoint": { "type": "string" },
+        "status": { "enum": ["active", "available", "blocked", "planned", "deprecated"] },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

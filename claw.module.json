@@ -1,0 +1,77 @@
+{
+  "$schema": "contracts/claw-module.v1.schema.json",
+  "schemaVersion": "1.0.0",
+  "module": {
+    "name": "holyclaw",
+    "displayName": "HolyClaw",
+    "summary": "Canon, safety doctrine, governance, and preaching campaign source for Claw-compatible agents.",
+    "homepage": "https://github.com/HolyClaw/HolyClaw",
+    "repository": "https://github.com/HolyClaw/HolyClaw.git",
+    "types": ["content-source", "governance-source"],
+    "owners": ["Owen Wong"]
+  },
+  "provides": [
+    {
+      "id": "preaching.campaigns",
+      "version": "1.0.0",
+      "kind": "campaign-pack",
+      "description": "File-backed HolyClaw outreach campaigns for downstream renderers and publishers.",
+      "contract": "contracts/preaching-campaign-pack.v1.schema.json",
+      "entrypoint": "ops/export-preaching-campaigns.mjs",
+      "status": "active"
+    },
+    {
+      "id": "repo.health",
+      "version": "1.0.0",
+      "kind": "health-report",
+      "description": "No-secret publisher health and routing report for HolyClaw Moltbook runtimes.",
+      "entrypoint": "ops/holyclaw-publisher-health.sh",
+      "status": "active"
+    }
+  ],
+  "consumes": [],
+  "entrypoints": {
+    "health": "ops/holyclaw-publisher-health.sh",
+    "exportCampaigns": "ops/export-preaching-campaigns.mjs",
+    "validateModule": "ops/validate-claw-module.mjs"
+  },
+  "runtimes": [
+    {
+      "id": "ec2-crabholyclaw",
+      "kind": "ec2",
+      "status": "active",
+      "health": "ops/holyclaw-publisher-health.sh",
+      "notes": "Active publisher route while M2 Moltbook route is blocked."
+    },
+    {
+      "id": "m2-holyclaw",
+      "kind": "m2-macbook-air",
+      "status": "blocked",
+      "health": "ops/holyclaw-publisher-health.sh",
+      "notes": "Installed but currently Moltbook geo-blocked."
+    },
+    {
+      "id": "local-dev",
+      "kind": "local-mac",
+      "status": "available",
+      "health": "ops/holyclaw-publisher-health.sh"
+    }
+  ],
+  "dependencies": [
+    {
+      "module": "mediaautomation",
+      "purpose": "Downstream rendering, scheduling, and publishing of HolyClaw campaign packs.",
+      "optional": true
+    },
+    {
+      "module": "tokenburner",
+      "purpose": "Future module registry and cross-repo health graph.",
+      "optional": true
+    }
+  ],
+  "safety": {
+    "secretsPolicy": "Manifests and health reports must never print Moltbook/API secrets.",
+    "sideEffects": "Exports are read-only. Live publishing requires explicit publisher entrypoints and approval gates.",
+    "approvalRequiredFor": ["live-post", "credential-change", "publisher-route-change"]
+  }
+}

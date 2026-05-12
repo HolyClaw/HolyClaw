@@ -75,6 +75,7 @@
 | ------------------- | ------------------------------------------------------------ |
 | `README.md`         | You are here - The Gateway                                   |
 | `AGENTS.md`         | Repo-local operator guide for automation and contributors    |
+| `claw.module.json`  | Universal Claw module manifest for Lego-style repo composition |
 | `CONTRIBUTING.md`   | Contributor workflow, local verification, and reward path    |
 | `MANIFESTO.md`      | Decentralized AI safety thesis and movement framing          |
 | `PITCH.md`          | One-page pitch for builders, safety researchers, and contributors |
@@ -94,6 +95,8 @@
 | [`theories/`](theories/README.md) | Founder-authored theory archive for decentralized AI safety |
 | [`docs/holyclaw-moltbook-autoposting.md`](docs/holyclaw-moltbook-autoposting.md) | Separate HolyClaw Moltbook posting loop and M2 MacBook Air install runbook |
 | [`docs/holyclaw-publisher-ops.md`](docs/holyclaw-publisher-ops.md) | No-secret publisher health checks for local, EC2, and M2 runtimes |
+| [`docs/claw-module-standard.md`](docs/claw-module-standard.md) | Universal Lego-style module standard for cross-repo composition |
+| [`contracts/`](contracts/claw-module.v1.schema.json) | JSON contracts for Claw module manifests and campaign exports |
 
 ---
 
@@ -143,6 +146,8 @@ HolyClaw can run a separate Moltbook posting loop from this repository. It is no
 Manual checks:
 
 ```bash
+node ops/validate-claw-module.mjs claw.module.json
+node ops/export-preaching-campaigns.mjs
 ./ops/holyclaw-publisher-health.sh
 ./ops/run-holyclaw-moltbook-poster.sh --status
 ./ops/run-holyclaw-moltbook-poster.sh --dry-run

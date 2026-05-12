@@ -121,7 +121,10 @@ test('verifyRepo passes for the checked-in docs surface', () => {
     assert.ok(result.markdownFiles.includes(requiredFile));
   }
   for (const requiredFile of REQUIRED_FILES) {
-    assert.ok(result.markdownFiles.includes(requiredFile) || requiredFile === 'LICENSE');
+    assert.ok(fs.existsSync(path.join(repoRoot, requiredFile)));
+    if (requiredFile.endsWith('.md')) {
+      assert.ok(result.markdownFiles.includes(requiredFile));
+    }
   }
 });
 
